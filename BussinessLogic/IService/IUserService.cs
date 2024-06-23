@@ -11,5 +11,7 @@ namespace BussinessLogic.IService
     public interface IUserService
     {
         List<UserDTO> GetUsers();
+        UserDTO AuthenticationUser(string userName, string password);
+        UserDTO GetUserById(int id);
     }
 }

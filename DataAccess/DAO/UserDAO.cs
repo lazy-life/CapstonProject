@@ -11,9 +11,25 @@ namespace DataAccess.DAO
     {
         public IEnumerable<User> GetUsers()
         {
-            using(DataAccessContext context = new DataAccessContext())
+            using (DataAccessContext context = new DataAccessContext())
             {
                 return context.Users.ToList();
+            }
+        }
+
+        public User Authentication(string username, string password)
+        {
+            using (DataAccessContext context = new DataAccessContext())
+            {
+                return context.Users.FirstOrDefault(x => x.UserEmail.Equals(username) && x.UserPassword.Equals(password));
+            }
+
+        }
+        public User GetUserById(int id)
+        {
+            using (DataAccessContext context = new DataAccessContext())
+            {
+                return context.Users.FirstOrDefault(x => x.UserId == id);
             }
         }
     }

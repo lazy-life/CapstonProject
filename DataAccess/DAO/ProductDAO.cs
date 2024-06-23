@@ -30,13 +30,16 @@ namespace DataAccess.DAO
             }
         }
 
-        public void SaveProduct(Product product)
+        public int SaveProduct(Product product)
         {
             using (DataAccessContext context = new DataAccessContext())
             {
                 product.CreateAt = DateTime.Now;
                 context.Products.Add(product);
                 context.SaveChanges();
+
+                int productId = product.ProductId;
+                return productId;
             }
         }
 
@@ -65,6 +68,19 @@ namespace DataAccess.DAO
             using (DataAccessContext context = new DataAccessContext())
             {
                 Product productExist = context.Products.FirstOrDefault(x => x.ProductId == productID);
+                if (productExist != null)
+                {
+                    return productExist;
+                }
+                return null;
+            }
+        }
+        
+        public IEnumerable<Product> GetProductByName(string productName)
+        {
+            using (DataAccessContext context = new DataAccessContext())
+            {
+                var productExist = context.Products.Where(x => x.ProductName.Contains(productName));
                 if (productExist != null)
                 {
                     return productExist;

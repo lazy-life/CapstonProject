@@ -9,6 +9,7 @@ namespace BussinessLogic.DTO
         public string UserName { get; set; }
         public string UserPhone { get; set; }
         public string UserEmail { get; set; }
+        public string UserPassword { get; set; }
         public int UserPoint { get; set; }
         public int UserRole { get; set; }
     }

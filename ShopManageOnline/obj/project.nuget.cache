@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TeCr3Rx0nWj6JlyByQBs2pc2g1HSOsobgMoP4jxa0Vvsf32Cxh1XeTXZhHXH/zTyE3ncuwVs2wd3uq+CjHxeRA==",
+  "dgSpecHash": "btJkRIB+0X1r+eZ5nxZMCumL9ngaXq/1SXQ/PqUUMQ7XBFiySte7O26rQKQcPr/qitPbZsBtMNKzSZY6P35VWg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ducda\\OneDrive\\Documents\\CSharp\\ShopManageOnline\\ShopManageOnline\\ShopManageOnline.csproj",
+  "projectFilePath": "C:\\Users\\ducda\\OneDrive\\Documents\\CSharp\\ShopManageOnline\\CapstonProject\\ShopManageOnline\\ShopManageOnline.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ducda\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\ducda\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

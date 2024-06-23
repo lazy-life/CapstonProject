@@ -16,6 +16,8 @@ namespace DataAccess.Model
         public double ProductSalePrice { get; set; }
         [Required]
         public double ProductCost { get; set; }
+        public int ProductStock { get; set; }
+        public string ProductDescription{ get; set; }
         public DateTime ProductDate { get; set; }
         public DateTime UpdateAt { get; set; }
         public DateTime DeleteAt { get; set; }

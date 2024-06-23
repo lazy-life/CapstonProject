@@ -20,7 +20,7 @@ namespace BussinessLogic.Service
             _categoryDAO = categoryDAO;
         }
 
-        public List<CategoryDTO> GetProducts()
+        public List<CategoryDTO> GetCategory()
         {
             return _mapper.Map<List<CategoryDTO>>(_categoryDAO.GetCategories());
         }

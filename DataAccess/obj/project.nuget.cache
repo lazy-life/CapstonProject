@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "W+BDGFu1PRlmjDZvml1S0cna2PwqnTYLDSnb2CINR3pXkFzxnynZd/jakmVny7YiJZws9FnWcXGbkkXhNjYdCg==",
+  "dgSpecHash": "l5A5T072aqS2Qmu7CdmPLemBX4le5EN9ErHKzaBbC3CtCujcr3UzPttAbpnOvzL3mX3yMJpue2Q+0mZoyQ9KLw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ducda\\OneDrive\\Documents\\CSharp\\ShopManageOnline\\DataAccess\\DataAccess.csproj",
+  "projectFilePath": "C:\\Users\\ducda\\OneDrive\\Documents\\CSharp\\ShopManageOnline\\CapstonProject\\DataAccess\\DataAccess.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ducda\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\ducda\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

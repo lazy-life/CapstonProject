@@ -20,9 +20,11 @@ builder.Services.AddDbContext<DataAccessContext>();
 
 builder.Services.AddSingleton<IUserService, UserService>();
 builder.Services.AddSingleton<IProductService, ProductService>();
+builder.Services.AddSingleton<ICategoryService, CategoryService>();
 
 builder.Services.AddSingleton<UserDAO>();
 builder.Services.AddSingleton<ProductDAO>();
+builder.Services.AddSingleton<CategoryDAO>();
 
 var app = builder.Build();
 

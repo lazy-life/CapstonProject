@@ -11,7 +11,7 @@ namespace BussinessLogic.IService
     public interface IProductService
     {
         List<ProductDTO> GetProducts();
-        void SaveProduct(ProductDTO productDto);
+        int SaveProduct(ProductDTO productDto);
         void DeleteProduct(int ProductID);
         void UpdateProduct(ProductDTO productDto);
         ProductDTO GetProductById(int ProductID);

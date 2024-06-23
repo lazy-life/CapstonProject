@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "aSgAcM5Ay7+GJf1f6vjy3MzCSI4fq4otQlTPfiOK99++H8JVJXhkTsyHukbAboFEk4NocSFGMvuhzcvvjZaiYA==",
+  "dgSpecHash": "tgAiIv4JTMBnAZpJF//CE61UpmtgCzfAGOWUdaptgzv9al3d9nFTvcUrcH4ndc/WkybuCIrCbQes2a1W+s0kaA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ducda\\OneDrive\\Documents\\CSharp\\ShopManageOnline\\BussinessLogic\\BussinessLogic.csproj",
+  "projectFilePath": "C:\\Users\\ducda\\OneDrive\\Documents\\CSharp\\ShopManageOnline\\CapstonProject\\BussinessLogic\\BussinessLogic.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ducda\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\ducda\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",

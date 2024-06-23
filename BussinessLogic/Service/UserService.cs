@@ -25,5 +25,14 @@ namespace BussinessLogic.Service
         {
             return _mapper.Map<List<UserDTO>>(_userDAO.GetUsers());
         }
+        public UserDTO AuthenticationUser(string userName, string password)
+        {
+            return _mapper.Map<UserDTO>(_userDAO.Authentication(userName, password));
+        }
+
+        public UserDTO GetUserById(int id)
+        {
+            return _mapper.Map<UserDTO>(_userDAO.GetUserById(id));
+        }
     }
 }

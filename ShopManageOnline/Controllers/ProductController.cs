@@ -41,11 +41,11 @@ namespace ShopManageOnline.Controllers
         [HttpPost("AddProduct")]
         public ActionResult<ProductDTO> Post(ProductDTO p)
         {
-            _productService.SaveProduct(p);
-            return NoContent();
+            int id = _productService.SaveProduct(p);
+            return Ok(id);
         }
 
-        [HttpGet("AddCategory/{ProductId}")]
+        [HttpGet("{ProductId}")]
         public ActionResult<ProductDTO> GetProductById(int ProductId)
         {
             return _productService.GetProductById(ProductId);

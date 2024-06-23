@@ -41,9 +41,9 @@ namespace BussinessLogic.Service
             _productDAO.UpdateProduct(_mapper.Map<Product>(productDto));
         }
 
-        public void SaveProduct(ProductDTO productDto)
+        public int SaveProduct(ProductDTO productDto)
         {
-            _productDAO.SaveProduct(_mapper.Map<Product>(productDto));
+            return _productDAO.SaveProduct(_mapper.Map<Product>(productDto));
         }
     }
 }

@@ -9,6 +9,6 @@ namespace BussinessLogic.IService
 {
     public interface ICategoryService
     {
-        List<CategoryDTO> GetProducts();
+        List<CategoryDTO> GetCategory();
     }
 }

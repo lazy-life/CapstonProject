@@ -18,10 +18,12 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 //DbContext
 builder.Services.AddDbContext<DataAccessContext>();
 
+builder.Services.AddSingleton<ICartService, CartService>();
 builder.Services.AddSingleton<IUserService, UserService>();
 builder.Services.AddSingleton<IProductService, ProductService>();
 builder.Services.AddSingleton<ICategoryService, CategoryService>();
 
+builder.Services.AddSingleton<CartDAO>();
 builder.Services.AddSingleton<UserDAO>();
 builder.Services.AddSingleton<ProductDAO>();
 builder.Services.AddSingleton<CategoryDAO>();

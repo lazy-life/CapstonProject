@@ -30,6 +30,9 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartId"), 1L, 1);
 
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CartDate")
                         .HasColumnType("datetime2");
 
@@ -137,6 +140,11 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("ProductDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("ProductDescription")
+                        .IsRequired()
+                        .HasMaxLength(2147483647)
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ProductName")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -147,6 +155,9 @@ namespace DataAccess.Migrations
 
                     b.Property<double>("ProductSalePrice")
                         .HasColumnType("float");
+
+                    b.Property<int>("ProductStock")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("UpdateAt")
                         .HasColumnType("datetime2");

@@ -15,5 +15,6 @@ namespace DataAccess.Model
         public virtual User User { get; set; }
         public int ProductId { get; set; }
         public int ProductDetailId { get; set; }
+        public int Amount { get; set; }
     }
 }

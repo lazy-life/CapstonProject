@@ -17,6 +17,8 @@ namespace DataAccess.Model
         [Required]
         public double ProductCost { get; set; }
         public int ProductStock { get; set; }
+        [Required]
+        [MaxLength(int.MaxValue)]
         public string ProductDescription{ get; set; }
         public DateTime ProductDate { get; set; }
         public DateTime UpdateAt { get; set; }

@@ -65,7 +65,7 @@ namespace ShopManageOnline.Controllers
             return Ok(id);
         }
 
-        [HttpDelete("DeleteCart")]
+        [HttpDelete("DeleteCart/{id}")]
         public ActionResult<CartDTO> Delete(int id)
         {
             _cartService.DeleteCartById(id);

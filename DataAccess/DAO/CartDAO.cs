@@ -34,7 +34,10 @@ namespace DataAccess.DAO
         {
             using (DataAccessContext context = new DataAccessContext())
             {
-                context.Carts.Remove(context.Carts.FirstOrDefault(x => x.CartId == id));
+                var cart = context.Carts.FirstOrDefault(x => x.CartId == id);
+                if (cart != null)
+                    context.Carts.Remove(cart);
+                    context.SaveChanges();
             }
         }
         public void UpdateCartById(int id, int amount)

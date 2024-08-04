@@ -51,6 +51,23 @@ namespace ShopManageOnline.Controllers
             return _productService.GetProductById(ProductId);
         }
 
+        [HttpGet("search/{key}")]
+        public ActionResult<ProductDTO> Search(string key)
+        {
+            try
+            {
+                List<ProductDTO> listProducts = _productService.SearchProducts(key);
+                if (listProducts == null)
+                {
+                    return NotFound();
+                }
+                return Ok(listProducts);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
     }
 }

@@ -22,11 +22,13 @@ builder.Services.AddSingleton<ICartService, CartService>();
 builder.Services.AddSingleton<IUserService, UserService>();
 builder.Services.AddSingleton<IProductService, ProductService>();
 builder.Services.AddSingleton<ICategoryService, CategoryService>();
+builder.Services.AddSingleton<AddressService>();
 
 builder.Services.AddSingleton<CartDAO>();
 builder.Services.AddSingleton<UserDAO>();
 builder.Services.AddSingleton<ProductDAO>();
 builder.Services.AddSingleton<CategoryDAO>();
+builder.Services.AddSingleton<AddressDAO>();
 
 var app = builder.Build();
 

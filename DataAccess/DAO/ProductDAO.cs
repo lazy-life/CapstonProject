@@ -16,6 +16,13 @@ namespace DataAccess.DAO
                 return context.Products.ToList();
             }
         }
+        public IEnumerable<Product> SearchProduct(string key)
+        {
+            using (DataAccessContext context = new DataAccessContext())
+            {
+                return context.Products.Where(x => x.ProductName.Contains(key)).ToList();
+            }
+        }
 
         public void DeleteProduct(int id)
         {

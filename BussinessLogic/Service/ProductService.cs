@@ -35,6 +35,11 @@ namespace BussinessLogic.Service
         {
             return _mapper.Map<List<ProductDTO>>(_productDAO.GetProducts());
         }
+        
+        public List<ProductDTO> SearchProducts(string key)
+        {
+            return _mapper.Map<List<ProductDTO>>(_productDAO.SearchProduct(key));
+        }
 
         public void UpdateProduct(ProductDTO productDto)
         {

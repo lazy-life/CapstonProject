@@ -24,6 +24,11 @@ namespace DataAccess.Model
         public DateTime UpdateAt { get; set; }
         public DateTime DeleteAt { get; set; }
         public DateTime CreateAt { get; set; }
+        public string Img1 { get; set; }
+        public string Img2 { get; set; }
+        public string Img3 { get; set; }
+        public string Img4 { get; set; }
+        public string Img5 { get; set; }
         public int UserId { get; set; }
         [ForeignKey("UserId")]
         public virtual User User { get; set; }

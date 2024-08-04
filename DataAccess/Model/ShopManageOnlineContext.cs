@@ -27,6 +27,10 @@ namespace DataAccess.Model
         public DbSet<Order> Orders { get; set; }
         public DbSet<History> Histories { get; set; }
         public DbSet<Warehouse> Warehouses { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<District> Districts { get; set; }
+        public DbSet<Ward> Wards { get; set; }
+        public DbSet<Address> Addresses { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

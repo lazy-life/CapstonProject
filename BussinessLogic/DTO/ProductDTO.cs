@@ -18,5 +18,10 @@ namespace BussinessLogic.DTO
         public DateTime CreateAt { get; set; }
         public int UserId { get; set; }
         public int CategoryId { get; set; }
+        public string Img1 { get; set; }
+        public string Img2 { get; set; }
+        public string Img3 { get; set; }
+        public string Img4 { get; set; }
+        public string Img5 { get; set; }
     }
 }

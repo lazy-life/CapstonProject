@@ -171,3 +171,11 @@ C:\Users\ducda\OneDrive\Documents\CSharp\ShopManageOnline\CapstonProject\ShopMan
 C:\Users\ducda\OneDrive\Documents\CSharp\ShopManageOnline\CapstonProject\ShopManageOnline\obj\Debug\net6.0\ShopManageOnline.pdb
 C:\Users\ducda\OneDrive\Documents\CSharp\ShopManageOnline\CapstonProject\ShopManageOnline\obj\Debug\net6.0\ShopManageOnline.genruntimeconfig.cache
 C:\Users\ducda\OneDrive\Documents\CSharp\ShopManageOnline\CapstonProject\ShopManageOnline\obj\Debug\net6.0\ref\ShopManageOnline.dll
+C:\Users\ducda\OneDrive\Documents\CSharp\ShopManageOnline\CapstonProject\ShopManageOnline\bin\Debug\net6.0\client_secret_241469921355-jh0oirb4572ssm3eddgui45q55dpmmob.apps.googleusercontent.com.json
+C:\Users\ducda\OneDrive\Documents\CSharp\ShopManageOnline\CapstonProject\ShopManageOnline\bin\Debug\net6.0\Google.Apis.dll
+C:\Users\ducda\OneDrive\Documents\CSharp\ShopManageOnline\CapstonProject\ShopManageOnline\bin\Debug\net6.0\Google.Apis.Auth.dll
+C:\Users\ducda\OneDrive\Documents\CSharp\ShopManageOnline\CapstonProject\ShopManageOnline\bin\Debug\net6.0\Google.Apis.Core.dll
+C:\Users\ducda\OneDrive\Documents\CSharp\ShopManageOnline\CapstonProject\ShopManageOnline\bin\Debug\net6.0\Google.Apis.Drive.v3.dll
+C:\Users\ducda\OneDrive\Documents\CSharp\ShopManageOnline\CapstonProject\ShopManageOnline\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\ducda\OneDrive\Documents\CSharp\ShopManageOnline\CapstonProject\ShopManageOnline\bin\Debug\net6.0\System.Management.dll
+C:\Users\ducda\OneDrive\Documents\CSharp\ShopManageOnline\CapstonProject\ShopManageOnline\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Management.dll

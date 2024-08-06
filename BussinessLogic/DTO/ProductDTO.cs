@@ -7,10 +7,6 @@ namespace BussinessLogic.DTO
     {
         public int ProductId { get; set; }
         public string ProductName { get; set; }
-        public double ProductPrice { get; set; }
-        public double ProductSalePrice { get; set; }
-        public double ProductCost { get; set; }
-        public int ProductStock { get; set; }
         public string ProductDescription { get; set; }
         public DateTime ProductDate { get; set; }
         public DateTime UpdateAt { get; set; }

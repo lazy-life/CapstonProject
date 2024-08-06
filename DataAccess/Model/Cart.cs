@@ -16,5 +16,7 @@ namespace DataAccess.Model
         public int ProductId { get; set; }
         public int ProductDetailId { get; set; }
         public int Amount { get; set; }
+        public int Status { get; set; }
+
     }
 }

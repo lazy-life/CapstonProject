@@ -14,20 +14,29 @@ namespace DataAccess.DAO
         {
             using (DataAccessContext context = new DataAccessContext())
             {
-                return context.Carts.Where(x => x.UserId == id).ToList();
+                return context.Carts.Where(x => x.UserId == id && x.Status == 0).ToList();
             }
         }
         public void AddCartByUserID(int usId, int productId, int detailProductId, int amount)
         {
             using (DataAccessContext context = new DataAccessContext())
             {
-                Cart cart = new Cart();
-                cart.UserId = usId;
-                cart.ProductId = productId;
-                cart.ProductDetailId = detailProductId;
-                cart.Amount = amount;
-                context.Carts.Add(cart);
-                context.SaveChanges();
+                var cartExist = context.Carts.FirstOrDefault(x => x.UserId == usId && x.ProductId == productId && x.ProductDetailId == detailProductId);
+                if (cartExist != null)
+                {
+                    cartExist.Amount = amount;
+                    context.SaveChanges();
+                }
+                else
+                {
+                    Cart cart = new Cart();
+                    cart.UserId = usId;
+                    cart.ProductId = productId;
+                    cart.ProductDetailId = detailProductId;
+                    cart.Amount = amount;
+                    context.Carts.Add(cart);
+                    context.SaveChanges();
+                }
             }
         }
         public void DeleteCartById(int id)
@@ -37,7 +46,7 @@ namespace DataAccess.DAO
                 var cart = context.Carts.FirstOrDefault(x => x.CartId == id);
                 if (cart != null)
                     context.Carts.Remove(cart);
-                    context.SaveChanges();
+                context.SaveChanges();
             }
         }
         public void UpdateCartById(int id, int amount)

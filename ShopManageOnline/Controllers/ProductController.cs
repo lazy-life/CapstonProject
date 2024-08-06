@@ -39,16 +39,16 @@ namespace ShopManageOnline.Controllers
         }
 
         [HttpPost("AddProduct")]
-        public ActionResult<ProductDTO> Post(ProductDTO p)
+        public ActionResult<ProductDTO> Post(ProductRequest request)
         {
-            int id = _productService.SaveProduct(p);
+            int id = _productService.SaveProduct(request.Product, request.ProductDetails);
             return Ok(id);
         }
 
         [HttpGet("{ProductId}")]
-        public ActionResult<ProductDTO> GetProductById(int ProductId)
+        public ActionResult<ProductRequest> GetProductById(int ProductId)
         {
-            return _productService.GetProductById(ProductId);
+            return _productService.GetProductByIdDetail(ProductId);
         }
 
         [HttpGet("search/{key}")]

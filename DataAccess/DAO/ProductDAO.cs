@@ -37,7 +37,7 @@ namespace DataAccess.DAO
             }
         }
 
-        public int SaveProduct(Product product)
+        public int SaveProduct(Product product, List<ProductDetail> productDetail)
         {
             using (DataAccessContext context = new DataAccessContext())
             {
@@ -45,8 +45,20 @@ namespace DataAccess.DAO
                 context.Products.Add(product);
                 context.SaveChanges();
 
-                int productId = product.ProductId;
-                return productId;
+                foreach (var p in productDetail)
+                {
+                    var pd = new ProductDetail();
+                    pd.ProductDetailName = p.ProductDetailName;
+                    pd.ProductDetailPrice = p.ProductDetailPrice;
+                    pd.DetailPriceDiscount = p.DetailPriceDiscount;
+                    pd.StartDate = p.StartDate;
+                    pd.DetailStock = p.DetailStock;
+                    pd.EndDate = p.EndDate;
+                    pd.ProductId = product.ProductId;
+                    context.ProductDetails.Add(pd);
+                    context.SaveChanges();
+                }
+                return product.ProductId;
             }
         }
 
@@ -57,13 +69,13 @@ namespace DataAccess.DAO
                 Product productExist = context.Products.FirstOrDefault(x => x.ProductId == product.ProductId);
                 if (productExist != null)
                 {
-                    productExist.ProductName = product.ProductName;
-                    productExist.ProductPrice = product.ProductPrice;
-                    productExist.ProductSalePrice = product.ProductSalePrice;
-                    productExist.ProductCost = product.ProductCost;
-                    productExist.CategoryId = product.CategoryId;
-                    productExist.UserId = product.UserId;
-                    productExist.UpdateAt = DateTime.Now;
+                    //productExist.ProductName = product.ProductName;
+                    //productExist.ProductPrice = product.ProductPrice;
+                    //productExist.ProductSalePrice = product.ProductSalePrice;
+                    //productExist.ProductCost = product.ProductCost;
+                    //productExist.CategoryId = product.CategoryId;
+                    //productExist.UserId = product.UserId;
+                    //productExist.UpdateAt = DateTime.Now;
 
                     context.SaveChanges();
                 }
@@ -82,7 +94,7 @@ namespace DataAccess.DAO
                 return null;
             }
         }
-        
+
         public IEnumerable<Product> GetProductByName(string productName)
         {
             using (DataAccessContext context = new DataAccessContext())

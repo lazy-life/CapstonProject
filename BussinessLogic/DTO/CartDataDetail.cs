@@ -25,6 +25,7 @@ namespace BussinessLogic.DTO
         public DateTime DeleteAt { get; set; }
         public DateTime CreateAt { get; set; }
         public int CategoryId { get; set; }
+        public string ImgUrl { get; set; }
         public string ProductDetailName { get; set; }
         public double ProductDetailPrice { get; set; }
         public DateTime ProductDetailData { get; set; }

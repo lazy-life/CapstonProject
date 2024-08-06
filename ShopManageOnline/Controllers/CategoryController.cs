@@ -2,7 +2,9 @@
 using BussinessLogic.DTO;
 using BussinessLogic.IService;
 using BussinessLogic.Service;
+using DataAccess.Model;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json.Nodes;
 
 namespace ShopManageOnline.Controllers
 {
@@ -34,6 +36,20 @@ namespace ShopManageOnline.Controllers
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("AddCategory")]
+        public ActionResult<Category> Post(Category cate)
+        {
+            try
+            {
+                _categoryService.SaveCategory(cate);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
             }
         }
     }

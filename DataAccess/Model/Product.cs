@@ -12,11 +12,6 @@ namespace DataAccess.Model
         [Required]
         [MaxLength(255)]
         public string ProductName { get; set; }
-        public double ProductPrice { get; set; }
-        public double ProductSalePrice { get; set; }
-        [Required]
-        public double ProductCost { get; set; }
-        public int ProductStock { get; set; }
         [Required]
         [MaxLength(int.MaxValue)]
         public string ProductDescription{ get; set; }

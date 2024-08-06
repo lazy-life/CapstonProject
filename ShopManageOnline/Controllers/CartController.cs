@@ -26,24 +26,36 @@ namespace ShopManageOnline.Controllers
         [HttpGet("{UsId}")]
         public ActionResult<CartDTO> GetCartById(int UsId)
         {
-            var cartData = _cartService.GetCartByUserID(UsId);
-            List<CartDataDetail> data = new List<CartDataDetail>();
-            foreach (var cart in cartData)
+            try
             {
-                ProductDTO product =  _productService.GetProductById(cart.ProductId);
-                CartDataDetail cardData = new CartDataDetail();
-                cardData.ProductId = cart.ProductId;
-                cardData.UserId = cart.UserId;
-                cardData.CartId = cart.CartId;
-                cardData.ProductName = product.ProductName;
-                cardData.ProductPrice = product.ProductPrice;
-                cardData.ProductSalePrice = product.ProductSalePrice;
-                cardData.Amount = cart.Amount;
-                data.Add(cardData);
+                var cartData = _cartService.GetCartByUserID(UsId);
+                List<CartDataDetail> data = new List<CartDataDetail>();
+                foreach (var cart in cartData)
+                {
+                    ProductDTO product = _productService.GetProductById(cart.ProductId);
+                    ProductDetailDTO detail = _productService.GetProductDetailById(cart.ProductDetailId);
+                    if (product != null)
+                    {
+                        CartDataDetail cardData = new CartDataDetail();
+                        cardData.ProductId = cart.ProductId;
+                        cardData.UserId = cart.UserId;
+                        cardData.CartId = cart.CartId;
+                        cardData.ProductName = product.ProductName;
+                        cardData.ProductDetailName = detail.ProductDetailName;
+                        cardData.ProductPrice = detail.ProductDetailPrice;
+                        cardData.Amount = cart.Amount;
+                        cardData.ImgUrl = product.Img1;
+                        data.Add(cardData);
+                    }
+                }
+                return data == null
+                    ? BadRequest()
+                    : Ok(data);
             }
-            return data == null
-                ? BadRequest()
-                : Ok(data);
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
 
         [HttpPost("AddCart")]

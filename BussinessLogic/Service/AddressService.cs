@@ -22,7 +22,7 @@ namespace BussinessLogic.Service
         {
             using (DataAccessContext context = new DataAccessContext())
             {
-                return context.Addresses.Where(x => x.UserId.Equals(usId.ToString())).ToList();
+                return context.Addresses.Where(x => x.UserId == usId).ToList();
             }
         }
 
@@ -80,6 +80,17 @@ namespace BussinessLogic.Service
                     address.Detail = detail;
                 }
                 context.SaveChanges();
+            }
+        }
+
+        public string GetAddressDetail(string cityId, string districtId, string wardId)
+        {
+            using (DataAccessContext context = new DataAccessContext())
+            {
+                var cityD = context.Cities.FirstOrDefault(x => x.Matp.Equals(cityId));
+                var districtD = context.Districts.FirstOrDefault(x => x.Maqh.Equals(districtId));
+                var wardD = context.Wards.FirstOrDefault(x => x.Xaid.Equals(wardId));
+                return $"{cityD.Name} {districtD.Name} {wardD.Name}";
             }
         }
     }

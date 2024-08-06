@@ -23,6 +23,7 @@ builder.Services.AddSingleton<IUserService, UserService>();
 builder.Services.AddSingleton<IProductService, ProductService>();
 builder.Services.AddSingleton<ICategoryService, CategoryService>();
 builder.Services.AddSingleton<AddressService>();
+builder.Services.AddSingleton<OrderService>();
 
 builder.Services.AddSingleton<CartDAO>();
 builder.Services.AddSingleton<UserDAO>();

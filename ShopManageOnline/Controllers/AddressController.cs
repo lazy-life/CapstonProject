@@ -107,6 +107,26 @@ namespace ShopManageOnline.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        
+        [HttpGet("getDetailAddress/{city}/{district}/{ward}")]
+        public ActionResult<object> GetDetailAddress(string city, string district, string ward)
+        {
+            try
+            {
+                string listProducts = _addressService.GetAddressDetail(city, district, ward);
+                if (listProducts == null)
+                {
+                    return NotFound();
+                }
+                var response = new { dataA = listProducts };
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
         [HttpPost("AddAddress")]
         public ActionResult<Ward> AddAddress(Address address)

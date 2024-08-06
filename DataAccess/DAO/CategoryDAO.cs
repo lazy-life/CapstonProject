@@ -22,6 +22,7 @@ namespace DataAccess.DAO
             using (DataAccessContext context = new DataAccessContext())
             {
                 context.Categories.Add(category);
+                context.SaveChanges();
             }
         }
     }

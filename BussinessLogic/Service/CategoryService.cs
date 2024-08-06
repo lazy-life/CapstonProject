@@ -2,6 +2,7 @@
 using BussinessLogic.DTO;
 using BussinessLogic.IService;
 using DataAccess.DAO;
+using DataAccess.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,11 @@ namespace BussinessLogic.Service
         public List<CategoryDTO> GetCategory()
         {
             return _mapper.Map<List<CategoryDTO>>(_categoryDAO.GetCategories());
+        }
+
+        public void SaveCategory(Category categoryDTO)
+        {
+            _categoryDAO.AddCategory(categoryDTO);
         }
     }
 }

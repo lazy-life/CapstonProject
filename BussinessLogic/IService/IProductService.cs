@@ -12,9 +12,11 @@ namespace BussinessLogic.IService
     {
         List<ProductDTO> GetProducts();
         List<ProductDTO> SearchProducts(string key);
-        int SaveProduct(ProductDTO productDto);
+        int SaveProduct(ProductDTO productDto, List<ProductDetailDTO> productDetailDTOs);
         void DeleteProduct(int ProductID);
         void UpdateProduct(ProductDTO productDto);
         ProductDTO GetProductById(int ProductID);
+        ProductRequest GetProductByIdDetail(int ProductID);
+        ProductDetailDTO GetProductDetailById(int productId);
     }
 }

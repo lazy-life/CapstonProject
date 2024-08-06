@@ -1,4 +1,5 @@
 ﻿using BussinessLogic.DTO;
+using DataAccess.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace BussinessLogic.IService
     public interface ICategoryService
     {
         List<CategoryDTO> GetCategory();
+        void SaveCategory(Category categoryDTO);
     }
 }

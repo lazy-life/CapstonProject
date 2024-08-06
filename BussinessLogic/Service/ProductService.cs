@@ -35,7 +35,7 @@ namespace BussinessLogic.Service
         {
             return _mapper.Map<List<ProductDTO>>(_productDAO.GetProducts());
         }
-        
+
         public List<ProductDTO> SearchProducts(string key)
         {
             return _mapper.Map<List<ProductDTO>>(_productDAO.SearchProduct(key));
@@ -46,9 +46,35 @@ namespace BussinessLogic.Service
             _productDAO.UpdateProduct(_mapper.Map<Product>(productDto));
         }
 
-        public int SaveProduct(ProductDTO productDto)
+        public int SaveProduct(ProductDTO productDto, List<ProductDetailDTO> productDetailDTOs)
         {
-            return _productDAO.SaveProduct(_mapper.Map<Product>(productDto));
+            return _productDAO.SaveProduct(_mapper.Map<Product>(productDto), _mapper.Map<List<ProductDetail>>(productDetailDTOs));
+        }
+
+        public ProductRequest GetProductByIdDetail(int ProductID)
+        {
+            using (DataAccessContext context = new DataAccessContext())
+            {
+                Product productExist = context.Products.FirstOrDefault(x => x.ProductId == ProductID);
+                List<ProductDetail> productDetail = context.ProductDetails.Where(x => x.ProductId == ProductID).ToList();
+                if (productExist != null && productDetail.Count() > 0)
+                {
+                    ProductRequest pr = new ProductRequest();
+                    pr.Product = _mapper.Map<ProductDTO>(productExist);
+                    pr.ProductDetails = _mapper.Map<List<ProductDetailDTO>>(productDetail);
+                    return pr;
+                }
+                return null;
+            }
+        }
+
+        public ProductDetailDTO GetProductDetailById(int productId)
+        {
+            using (DataAccessContext context = new DataAccessContext())
+            {
+                var detail = context.ProductDetails.FirstOrDefault(x => x.ProductDetailId == productId);
+                return _mapper.Map<ProductDetailDTO>(detail);
+            }
         }
     }
 }

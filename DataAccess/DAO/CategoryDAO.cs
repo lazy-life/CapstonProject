@@ -34,6 +34,7 @@ namespace DataAccess.DAO
         {
             using (DataAccessContext context = new DataAccessContext())
             {
+                category.Status = 1;
                 context.Categories.Add(category);
                 context.SaveChanges();
             }

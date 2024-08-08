@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BussinessLogic.DTO
+{
+    public class OrderResultDTO
+    {
+        public int OrderId { get; set; }
+        public DateTime OrderDate { get; set; }
+        public int OrderStatus { get; set; }
+        public int UserId { get; set; }
+        public int CartId { get; set; }
+        public double TotalMoney { get; set; }
+        public string ProductDetailName { get; set; }
+        public string ProductName { get; set; }
+        public int Amount { get; set; }
+        public int ProductId { get; set; }
+        public int AddressId { get; set; }
+        public string ImgUrl { get; set; }
+        public int ProductDetailId { get; set; }
+    }
+}

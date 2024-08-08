@@ -45,10 +45,52 @@ namespace ShopManageOnline.Controllers
             return Ok(id);
         }
 
+        [HttpPut]
+        public ActionResult Put(ProductRequest request)
+        {
+            try
+            {
+                _productService.EditProduct(request.Product, request.ProductDetails);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
         [HttpGet("{ProductId}")]
         public ActionResult<ProductRequest> GetProductById(int ProductId)
         {
             return _productService.GetProductByIdDetail(ProductId);
+        }
+
+        [HttpDelete("removeProduct/{id}")]
+        public ActionResult DeleteProduct(int id)
+        {
+            try
+            {
+                _productService.DeleteProduct(id);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpDelete("removeDetailProduct/{id}")]
+        public ActionResult DeleteDetailProduct(int id)
+        {
+            try
+            {
+                _productService.DeleteDetailProduct(id);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
 
         [HttpGet("search/{key}")]

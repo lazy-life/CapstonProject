@@ -12,5 +12,6 @@ namespace DataAccess.Model
         [Required]
         public string CategoryName { get; set; }
         public string ImageUrl { get; set; }
+        public int Status { get; set; }
     }
 }

@@ -24,7 +24,7 @@ namespace DataAccess.DAO
                 var cartExist = context.Carts.FirstOrDefault(x => x.UserId == usId && x.ProductId == productId && x.ProductDetailId == detailProductId);
                 if (cartExist != null)
                 {
-                    cartExist.Amount = amount;
+                    cartExist.Amount += amount;
                     context.SaveChanges();
                 }
                 else

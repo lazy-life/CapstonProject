@@ -154,7 +154,6 @@ C:\Users\ducda\OneDrive\Documents\CSharp\ShopManageOnline\CapstonProject\ShopMan
 C:\Users\ducda\OneDrive\Documents\CSharp\ShopManageOnline\CapstonProject\ShopManageOnline\obj\Debug\net6.0\ShopManageOnline.AssemblyInfoInputs.cache
 C:\Users\ducda\OneDrive\Documents\CSharp\ShopManageOnline\CapstonProject\ShopManageOnline\obj\Debug\net6.0\ShopManageOnline.AssemblyInfo.cs
 C:\Users\ducda\OneDrive\Documents\CSharp\ShopManageOnline\CapstonProject\ShopManageOnline\obj\Debug\net6.0\ShopManageOnline.csproj.CoreCompileInputs.cache
-C:\Users\ducda\OneDrive\Documents\CSharp\ShopManageOnline\CapstonProject\ShopManageOnline\obj\Debug\net6.0\ShopManageOnline.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\ducda\OneDrive\Documents\CSharp\ShopManageOnline\CapstonProject\ShopManageOnline\obj\Debug\net6.0\ShopManageOnline.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\ducda\OneDrive\Documents\CSharp\ShopManageOnline\CapstonProject\ShopManageOnline\obj\Debug\net6.0\ShopManageOnline.sourcelink.json
 C:\Users\ducda\OneDrive\Documents\CSharp\ShopManageOnline\CapstonProject\ShopManageOnline\obj\Debug\net6.0\staticwebassets.build.json

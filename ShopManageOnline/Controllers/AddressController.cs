@@ -141,6 +141,20 @@ namespace ShopManageOnline.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPut]
+        public ActionResult Put(Address address)
+        {
+            try
+            {
+                _addressService.UpdateAddress(address);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
         
         [HttpPut("UpdateAddress/{id}/{city}/{district}/{ward}/{detail}")]
         public ActionResult<Ward> UpdateAddress(int id, string city, string district, string ward, string detail)

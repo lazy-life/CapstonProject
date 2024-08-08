@@ -76,5 +76,15 @@ namespace BussinessLogic.Service
                 return _mapper.Map<ProductDetailDTO>(detail);
             }
         }
+
+        public void DeleteDetailProduct(int id)
+        {
+            _productDAO.DeleteDetailProduct(id);
+        }
+
+        public void EditProduct(ProductDTO product, List<ProductDetailDTO> productDetails)
+        {
+            _productDAO.SaveEditProduct(_mapper.Map<Product>(product), _mapper.Map<List<ProductDetail>>(productDetails));
+        }
     }
 }

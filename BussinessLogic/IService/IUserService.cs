@@ -12,6 +12,9 @@ namespace BussinessLogic.IService
     {
         List<UserDTO> GetUsers();
         UserDTO AuthenticationUser(string userName, string password);
+        void AddUser(User us);
         UserDTO GetUserById(int id);
+        void ChangePass(ChangePasswordRequest request);
+        List<string> ReportManage(int months);
     }
 }

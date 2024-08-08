@@ -2,6 +2,7 @@
 using BussinessLogic.DTO;
 using BussinessLogic.IService;
 using BussinessLogic.Service;
+using DataAccess.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ShopManageOnline.Controllers
@@ -19,8 +20,44 @@ namespace ShopManageOnline.Controllers
         [HttpPost("AddOrder")]
         public ActionResult<OrderDTO> Post([FromBody] AddOrderRequestDto request)
         {
-            _orderService.SaveOrder(request.Items);
-            return Ok();
+            try
+            {
+                _orderService.SaveOrder(request.Items);
+                return Ok("OK");
+            }
+            catch (Exception)
+            {
+
+                return BadRequest();
+            }
+        }
+
+        [HttpGet("GetOrderID/{id}")]
+        public ActionResult<OrderRequest> Get(int id)
+        {
+            try
+            {
+                var data = _orderService.GetOrderUsId(id);
+                return Ok(data);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet("GetAllOrder")]
+        public ActionResult<List<Order>> GetOrder()
+        {
+            try
+            {
+                var data = _orderService.GetAllOrder();
+                return Ok(data);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
     }
 }

@@ -22,7 +22,12 @@ namespace BussinessLogic.Service
         {
             using (DataAccessContext context = new DataAccessContext())
             {
-                return context.Addresses.Where(x => x.UserId == usId).ToList();
+                var dataAdd = context.Addresses.Where(x => x.UserId == usId).ToList();
+                foreach (var d in dataAdd)
+                {
+                    d.Detail = d.Detail + ", " + GetAddressDetail(d.Matp, d.Maqh, d.Mapx);
+                }
+                return dataAdd;
             }
         }
 
@@ -90,7 +95,27 @@ namespace BussinessLogic.Service
                 var cityD = context.Cities.FirstOrDefault(x => x.Matp.Equals(cityId));
                 var districtD = context.Districts.FirstOrDefault(x => x.Maqh.Equals(districtId));
                 var wardD = context.Wards.FirstOrDefault(x => x.Xaid.Equals(wardId));
-                return $"{cityD.Name} {districtD.Name} {wardD.Name}";
+                return $" {wardD.Name}, {districtD.Name}, {cityD.Name}";
+            }
+        }
+
+        public void UpdateAddress(Address address)
+        {
+            using (DataAccessContext context = new DataAccessContext())
+            {
+                var dta = context.Addresses.FirstOrDefault(x => x.AddressID == address.AddressID);
+                if (dta != null)
+                {
+                    dta.Mapx = address.Mapx;
+                    dta.Matp = address.Matp;
+                    dta.Maqh = address.Maqh;
+                    dta.Detail = address.Detail;
+                    context.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception();
+                }
             }
         }
     }

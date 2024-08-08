@@ -24,6 +24,7 @@ namespace DataAccess.Model
         public string Img3 { get; set; }
         public string Img4 { get; set; }
         public string Img5 { get; set; }
+        public int Status { get; set; }
         public int UserId { get; set; }
         [ForeignKey("UserId")]
         public virtual User User { get; set; }

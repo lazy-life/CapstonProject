@@ -13,7 +13,20 @@ namespace DataAccess.DAO
         {
             using (DataAccessContext context = new DataAccessContext())
             {
-                return context.Categories.ToList();
+                return context.Categories.Where(x => x.Status == 1).ToList();
+            }
+        }
+
+        public void RemoveCategory(int id)
+        {
+            using (DataAccessContext context = new DataAccessContext())
+            {
+               var exist = context.Categories.FirstOrDefault(x => x.CategoryId == id && x.Status == 1);
+                if (exist != null)
+                {
+                    exist.Status = 2;
+                    context.SaveChanges();
+                }
             }
         }
 

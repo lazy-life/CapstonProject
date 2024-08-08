@@ -2,6 +2,7 @@
 using BussinessLogic.DTO;
 using BussinessLogic.IService;
 using BussinessLogic.Service;
+using DataAccess.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ShopManageOnline.Controllers
@@ -30,6 +31,20 @@ namespace ShopManageOnline.Controllers
                     return NotFound();
                 }
                 return Ok(listUsers);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("AddUsers")]
+        public ActionResult AddUser([FromBody] User us)
+        {
+            try
+            {
+                _userService.AddUser(us);
+                return Ok();
             }
             catch (Exception ex)
             {
@@ -71,6 +86,34 @@ namespace ShopManageOnline.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpPost("ChangePass")]
+        public ActionResult ChangePass([FromBody] ChangePasswordRequest request)
+        {
+            try
+            {
+                _userService.ChangePass(request);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet("report/{mounts}")]
+        public ActionResult GetReport(int mounts)
+        {
+            try
+            {
+                return Ok(_userService.ReportManage(mounts));
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+
         }
     }
 }

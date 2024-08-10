@@ -20,5 +20,6 @@ namespace BussinessLogic.IService
         ProductDetailDTO GetProductDetailById(int productId);
         void DeleteDetailProduct(int id);
         void EditProduct(ProductDTO product, List<ProductDetailDTO> productDetails);
+        List<ProductDTO> GetProductsById(int id);
     }
 }

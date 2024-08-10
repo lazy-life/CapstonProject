@@ -45,6 +45,24 @@ namespace ShopManageOnline.Controllers
             return Ok(id);
         }
 
+        [HttpGet("GetProductByCateId/{id}")]
+        public ActionResult<ProductDTO> GetProductByCateId(int id)
+        {
+            try
+            {
+                List<ProductDTO> listProducts = _productService.GetProductsById(id);
+                if (listProducts == null)
+                {
+                    return NotFound();
+                }
+                return Ok(listProducts);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPut]
         public ActionResult Put(ProductRequest request)
         {

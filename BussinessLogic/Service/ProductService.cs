@@ -3,6 +3,7 @@ using BussinessLogic.DTO;
 using BussinessLogic.IService;
 using DataAccess.DAO;
 using DataAccess.Model;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -85,6 +86,11 @@ namespace BussinessLogic.Service
         public void EditProduct(ProductDTO product, List<ProductDetailDTO> productDetails)
         {
             _productDAO.SaveEditProduct(_mapper.Map<Product>(product), _mapper.Map<List<ProductDetail>>(productDetails));
+        }
+
+        public List<ProductDTO> GetProductsById(int id)
+        {
+            return _mapper.Map<List<ProductDTO>>(_productDAO.GetProductByCateId(id));
         }
     }
 }

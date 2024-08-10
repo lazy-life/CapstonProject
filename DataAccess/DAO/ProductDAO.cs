@@ -53,9 +53,7 @@ namespace DataAccess.DAO
                     pd.ProductDetailName = p.ProductDetailName;
                     pd.ProductDetailPrice = p.ProductDetailPrice;
                     pd.DetailPriceDiscount = p.DetailPriceDiscount;
-                    pd.StartDate = p.StartDate;
                     pd.DetailStock = p.DetailStock;
-                    pd.EndDate = p.EndDate;
                     pd.ProductId = product.ProductId;
                     context.ProductDetails.Add(pd);
                     context.SaveChanges();
@@ -151,14 +149,25 @@ namespace DataAccess.DAO
                         pd.ProductDetailName = p.ProductDetailName;
                         pd.ProductDetailPrice = p.ProductDetailPrice;
                         pd.DetailPriceDiscount = p.DetailPriceDiscount;
-                        pd.StartDate = p.StartDate;
                         pd.DetailStock = p.DetailStock;
-                        pd.EndDate = p.EndDate;
                         pd.ProductId = product.ProductId;
                         context.ProductDetails.Add(pd);
                         context.SaveChanges();
                     }
                 }
+            }
+        }
+
+        public IEnumerable<Product> GetProductByCateId(int id)
+        {
+            using (DataAccessContext context = new DataAccessContext())
+            {
+                var productExist = context.Products.Where(x => x.CategoryId == id && x.Status == 1).ToList();
+                if (productExist != null)
+                {
+                    return productExist;
+                }
+                return null;
             }
         }
     }

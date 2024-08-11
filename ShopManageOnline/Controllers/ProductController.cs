@@ -38,6 +38,59 @@ namespace ShopManageOnline.Controllers
             }
         }
 
+        [HttpGet("GetProductsSale")]
+        public ActionResult<ProductDTO> GetProductSale()
+        {
+            try
+            {
+                List<ProductDTO> listProducts = _productService.GetProductsSale();
+                if (listProducts == null)
+                {
+                    return NotFound();
+                }
+                return Ok(listProducts);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("GetProductsNotSale")]
+        public ActionResult<ProductDTO> GetProductNotSale()
+        {
+            try
+            {
+                List<ProductDTO> listProducts = _productService.GetProductsNotSale();
+                if (listProducts == null)
+                {
+                    return NotFound();
+                }
+                return Ok(listProducts);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("GetProductsAll")]
+        public ActionResult<ProductDTO> GetProductAll()
+        {
+            try
+            {
+                List<ProductDTO> listProducts = _productService.GetProductsAll();
+                if (listProducts == null)
+                {
+                    return NotFound();
+                }
+                return Ok(listProducts);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
         [HttpPost("AddProduct")]
         public ActionResult<ProductDTO> Post(ProductRequest request)
         {
@@ -122,6 +175,32 @@ namespace ShopManageOnline.Controllers
                     return NotFound();
                 }
                 return Ok(listProducts);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPost("UpdateSale/{id}/{percent}")]
+        public ActionResult<ProductDTO> UpdateSale(int id, double percent)
+        {
+            try
+            {
+                _productService.UpdateSaleProduct(id, percent);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPost("RemoveSale/{id}")]
+        public ActionResult<ProductDTO> RemoveSale(int id)
+        {
+            try
+            {
+                _productService.RemoveSaleProduct(id);
+                return Ok();
             }
             catch (Exception ex)
             {

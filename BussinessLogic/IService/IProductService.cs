@@ -11,6 +11,7 @@ namespace BussinessLogic.IService
     public interface IProductService
     {
         List<ProductDTO> GetProducts();
+        List<ProductDTO> GetProductsSale();
         List<ProductDTO> SearchProducts(string key);
         int SaveProduct(ProductDTO productDto, List<ProductDetailDTO> productDetailDTOs);
         void DeleteProduct(int ProductID);
@@ -21,5 +22,9 @@ namespace BussinessLogic.IService
         void DeleteDetailProduct(int id);
         void EditProduct(ProductDTO product, List<ProductDetailDTO> productDetails);
         List<ProductDTO> GetProductsById(int id);
+        List<ProductDTO> GetProductsAll();
+        List<ProductDTO> GetProductsNotSale();
+        void RemoveSaleProduct(int id);
+        void UpdateSaleProduct(int id, double percent);
     }
 }

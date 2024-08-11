@@ -34,7 +34,69 @@ namespace BussinessLogic.Service
 
         public List<ProductDTO> GetProducts()
         {
-            return _mapper.Map<List<ProductDTO>>(_productDAO.GetProducts());
+            using (DataAccessContext context = new DataAccessContext())
+            {
+                var lstPr = _mapper.Map<List<ProductDTO>>(_productDAO.GetProducts());
+                foreach (var pr in lstPr)
+                {
+                    try
+                    {
+                        pr.ProductPrice = context.ProductDetails.FirstOrDefault(x => x.ProductId == pr.ProductId).ProductDetailPrice;
+                    }
+                    catch (Exception)
+                    {
+
+                        pr.ProductPrice = 0;
+                    }
+                }
+
+                return lstPr;
+            }
+
+        }
+        public List<ProductDTO> GetProductsNotSale()
+        {
+            using (DataAccessContext context = new DataAccessContext())
+            {
+                var lstPr = _mapper.Map<List<ProductDTO>>(_productDAO.GetProductsNotSale());
+                foreach (var pr in lstPr)
+                {
+                    try
+                    {
+                        pr.ProductPrice = context.ProductDetails.FirstOrDefault(x => x.ProductId == pr.ProductId).ProductDetailPrice;
+                    }
+                    catch (Exception)
+                    {
+
+                        pr.ProductPrice = 0;
+                    }
+                }
+
+                return lstPr;
+            }
+
+        }
+        public List<ProductDTO> GetProductsSale()
+        {
+            using (DataAccessContext context = new DataAccessContext())
+            {
+                var lstPr = _mapper.Map<List<ProductDTO>>(_productDAO.GetProductsSale());
+                foreach (var pr in lstPr)
+                {
+                    try
+                    {
+                        var price = context.ProductDetails.FirstOrDefault(x => x.ProductId == pr.ProductId).ProductDetailPrice;
+                        pr.ProductPrice = price;
+                        pr.ProductSalePrice = price - (price / 100 * pr.SalePercent);
+                    }
+                    catch (Exception)
+                    {
+                        pr.ProductPrice = 0;
+                    }
+                }
+
+                return lstPr;
+            }
         }
 
         public List<ProductDTO> SearchProducts(string key)
@@ -91,6 +153,21 @@ namespace BussinessLogic.Service
         public List<ProductDTO> GetProductsById(int id)
         {
             return _mapper.Map<List<ProductDTO>>(_productDAO.GetProductByCateId(id));
+        }
+
+        public List<ProductDTO> GetProductsAll()
+        {
+            return _mapper.Map<List<ProductDTO>>(_productDAO.GetProductsAll());
+        }
+
+        public void RemoveSaleProduct(int id)
+        {
+            _productDAO.RemoveSaleProduct(id);
+        }
+
+        public void UpdateSaleProduct(int id, double percent)
+        {
+            _productDAO.UpdateSaleProduct(id, percent);
         }
     }
 }

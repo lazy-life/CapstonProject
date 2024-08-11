@@ -21,7 +21,7 @@ namespace DataAccess.DAO
         {
             using (DataAccessContext context = new DataAccessContext())
             {
-                return context.Users.FirstOrDefault(x => x.UserEmail.Equals(username) && x.UserPassword.Equals(password));
+                return context.Users.FirstOrDefault(x => x.UserEmail.Equals(username) && x.UserPassword.Equals(password) && x.UserRole <= 2);
             }
 
         }
@@ -30,6 +30,22 @@ namespace DataAccess.DAO
             using (DataAccessContext context = new DataAccessContext())
             {
                 return context.Users.FirstOrDefault(x => x.UserId == id);
+            }
+        }
+
+        public bool ValidateUser(int usId, int token)
+        {
+            using (DataAccessContext context = new DataAccessContext())
+            {
+                var data = context.Users.FirstOrDefault(x => x.UserId == usId && x.Token == token);
+                if(data != null)
+                {
+                    data.Token = 0;
+                    data.UserRole = 2;
+                    context.SaveChanges();
+                    return true;
+                }
+                return false;
             }
         }
     }

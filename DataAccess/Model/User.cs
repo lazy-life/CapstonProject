@@ -21,5 +21,6 @@ namespace DataAccess.Model
         public string UserPassword { get; set; }
         public int UserPoint { get; set; }
         public int UserRole { get; set; }
+        public int Token { get; set; }
     }
 }

@@ -42,10 +42,11 @@ namespace ShopManageOnline.Controllers
                         cardData.CartId = cart.CartId;
                         cardData.ProductName = product.ProductName;
                         cardData.ProductDetailName = detail.ProductDetailName;
-                        cardData.ProductPrice = detail.ProductDetailPrice;
+                        cardData.ProductPrice = product.Sale == 1 ? detail.ProductDetailPrice - (detail.ProductDetailPrice / 100 * product.SalePercent) : detail.ProductDetailPrice;
                         cardData.Amount = cart.Amount;
                         cardData.ImgUrl = product.Img1;
                         data.Add(cardData);
+
                     }
                 }
                 return data == null

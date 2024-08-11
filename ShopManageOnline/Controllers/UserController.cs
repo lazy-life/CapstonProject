@@ -43,8 +43,12 @@ namespace ShopManageOnline.Controllers
         {
             try
             {
-                _userService.AddUser(us);
-                return Ok();
+                if(_userService.CheckDouplicate(us.UserEmail, us.UserPhone))
+                {
+                    return BadRequest();
+                }
+                int a = _userService.AddUser(us);
+                return Ok(a);
             }
             catch (Exception ex)
             {
@@ -114,6 +118,19 @@ namespace ShopManageOnline.Controllers
                 return BadRequest();
             }
 
+        }
+        [HttpPost("ValidateUser/{id}/{token}")]
+        public ActionResult ValidateUser(int id, int token)
+        {
+            try
+            {
+                _userService.ValidateUser(id, token);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
     }
 }

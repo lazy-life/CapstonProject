@@ -17,6 +17,21 @@ namespace DataAccess.DAO
                 return context.Products.Where(x => x.Status == 1).ToList();
             }
         }
+        public IEnumerable<Product> GetProductsNotSale()
+        {
+            using (DataAccessContext context = new DataAccessContext())
+            {
+                return context.Products.Where(x => x.Status == 1 && x.Sale == 0).ToList();
+            }
+        }
+
+        public IEnumerable<Product> GetProductsSale()
+        {
+            using (DataAccessContext context = new DataAccessContext())
+            {
+                return context.Products.Where(x => x.Status == 1 && x.Sale == 1).ToList();
+            }
+        }
         public IEnumerable<Product> SearchProduct(string key)
         {
             using (DataAccessContext context = new DataAccessContext())
@@ -44,6 +59,7 @@ namespace DataAccess.DAO
             {
                 product.CreateAt = DateTime.Now;
                 product.Status = 1;
+                product.Sale = 0;
                 context.Products.Add(product);
                 context.SaveChanges();
 
@@ -69,14 +85,10 @@ namespace DataAccess.DAO
                 Product productExist = context.Products.FirstOrDefault(x => x.ProductId == product.ProductId);
                 if (productExist != null)
                 {
-                    //productExist.ProductName = product.ProductName;
-                    //productExist.ProductPrice = product.ProductPrice;
-                    //productExist.ProductSalePrice = product.ProductSalePrice;
-                    //productExist.ProductCost = product.ProductCost;
-                    //productExist.CategoryId = product.CategoryId;
-                    //productExist.UserId = product.UserId;
-                    //productExist.UpdateAt = DateTime.Now;
-
+                    productExist.ProductName = product.ProductName;
+                    productExist.CategoryId = product.CategoryId;
+                    productExist.UserId = product.UserId;
+                    productExist.UpdateAt = DateTime.Now;
                     context.SaveChanges();
                 }
             }
@@ -92,6 +104,33 @@ namespace DataAccess.DAO
                     return productExist;
                 }
                 return null;
+            }
+        }
+
+        public void UpdateSaleProduct(int id, double percent)
+        {
+            using (DataAccessContext context = new DataAccessContext())
+            {
+                Product productExist = context.Products.FirstOrDefault(x => x.ProductId == id && x.Status == 1);
+                if (productExist != null)
+                {
+                    productExist.Sale = 1;
+                    productExist.SalePercent = (int)percent;
+                    context.SaveChanges();
+                }
+            }
+        }
+        public void RemoveSaleProduct(int id)
+        {
+            using (DataAccessContext context = new DataAccessContext())
+            {
+                Product productExist = context.Products.FirstOrDefault(x => x.ProductId == id && x.Status == 1);
+                if (productExist != null)
+                {
+                    productExist.Sale = 0;
+                    productExist.SalePercent = 0;
+                    context.SaveChanges();
+                }
             }
         }
 
@@ -134,11 +173,11 @@ namespace DataAccess.DAO
                 exist.ProductName = product.ProductName;
                 exist.ProductDescription = product.ProductDescription;
                 exist.UpdateAt = DateTime.Now;
-                exist.Img1 = product.Img1 != "" ? product.Img1  : exist.Img1;
-                exist.Img2 = product.Img2 != "" ? product.Img2  : exist.Img2; ;
-                exist.Img3 = product.Img3 != "" ? product.Img3  : exist.Img3;;
-                exist.Img4 = product.Img4 != "" ? product.Img4  : exist.Img4;;
-                exist.Img5 = product.Img5 != "" ? product.Img5  : exist.Img5;;
+                exist.Img1 = product.Img1 != "" ? product.Img1 : exist.Img1;
+                exist.Img2 = product.Img2 != "" ? product.Img2 : exist.Img2; ;
+                exist.Img3 = product.Img3 != "" ? product.Img3 : exist.Img3; ;
+                exist.Img4 = product.Img4 != "" ? product.Img4 : exist.Img4; ;
+                exist.Img5 = product.Img5 != "" ? product.Img5 : exist.Img5; ;
                 context.SaveChanges();
 
                 foreach (var p in productDetails)
@@ -168,6 +207,14 @@ namespace DataAccess.DAO
                     return productExist;
                 }
                 return null;
+            }
+        }
+
+        public object GetProductsAll()
+        {
+            using (DataAccessContext context = new DataAccessContext())
+            {
+                return context.Products.Where(x => x.Status == 1).ToList();
             }
         }
     }

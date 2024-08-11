@@ -1,13 +1,17 @@
 ﻿using AutoMapper;
 using BussinessLogic.DTO;
 using BussinessLogic.IService;
+using BussinessLogic.MailService;
+using BussinessLogic.Models;
 using DataAccess.DAO;
+using DataAccess.Migrations;
 using DataAccess.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace BussinessLogic.Service
 {
@@ -15,10 +19,12 @@ namespace BussinessLogic.Service
     {
         private readonly IMapper _mapper;
         private readonly UserDAO _userDAO;
-        public UserService(IMapper mapper, UserDAO userDAO)
+        private readonly SendMailService _mailService;
+        public UserService(IMapper mapper, UserDAO userDAO, SendMailService mailService)
         {
             _mapper = mapper;
             _userDAO = userDAO;
+            _mailService = mailService;
         }
 
         public List<UserDTO> GetUsers()
@@ -104,12 +110,35 @@ namespace BussinessLogic.Service
             }
         }
 
-        public void AddUser(User us)
+        public int AddUser(User us)
         {
             using (DataAccessContext context = new DataAccessContext())
             {
+                var mail = new EmailData();
+                mail.To = us.UserEmail;
+                mail.Subject = "Xác minh tài khoản";
+                Random random = new Random();
+                int randomNumber = random.Next(10000, 100000);
+                mail.Body = randomNumber.ToString();
+                _mailService.SendMail(mail);
+                us.UserRole = 3;
+                us.Token = randomNumber;
                 context.Users.Add(us);
                 context.SaveChanges();
+                return us.UserId;
+            }
+        }
+
+        public bool ValidateUser(int id, int token)
+        {
+            return _userDAO.ValidateUser(id, token);
+        }
+
+        public bool CheckDouplicate(string email, string phoneNumber)
+        {
+            using (DataAccessContext context = new DataAccessContext())
+            {
+                return context.Users.FirstOrDefault(x => x.UserEmail.ToLower().Equals(email.ToLower()) || x.UserPhone.ToLower().Equals(phoneNumber.ToLower())) != null ? true : false;
             }
         }
     }

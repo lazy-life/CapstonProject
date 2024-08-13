@@ -18,6 +18,7 @@ namespace BussinessLogic.MappingProfile
             CreateMap<Category, CategoryDTO>().ReverseMap();
             CreateMap<History, HistoryDTO>().ReverseMap();
             CreateMap<OrderDTO, OrderResultDTO>().ReverseMap();
+            CreateMap<OrderDTO, Order>().ReverseMap();
             CreateMap<ProductDetail, ProductDetailDTO>().ReverseMap();
             CreateMap<User, UserDTO>().ReverseMap();
             CreateMap<Warehouse, WarehouseDTO>().ReverseMap();

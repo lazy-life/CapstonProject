@@ -4,6 +4,7 @@ using BussinessLogic.IService;
 using BussinessLogic.Service;
 using DataAccess.Model;
 using Microsoft.AspNetCore.Mvc;
+using MimeKit.Tnef;
 
 namespace ShopManageOnline.Controllers
 {
@@ -45,14 +46,42 @@ namespace ShopManageOnline.Controllers
                 return BadRequest();
             }
         }
+        
+        [HttpGet("GetOrderByID/{id}")]
+        public ActionResult<OrderRequest> GetOrderId(int id)
+        {
+            try
+            {
+                var data = _orderService.GetOrderbyId(id);
+                return Ok(data);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
 
         [HttpGet("GetAllOrder")]
-        public ActionResult<List<Order>> GetOrder()
+        public ActionResult<List<OrderDTO>> GetOrder()
         {
             try
             {
                 var data = _orderService.GetAllOrder();
                 return Ok(data);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPost("Status/{id}/{status}")]
+        public ActionResult UpdateStatus(int id, int status)
+        {
+            try
+            {
+                _orderService.UpdateStatus(id, status);
+                return Ok();
             }
             catch (Exception)
             {

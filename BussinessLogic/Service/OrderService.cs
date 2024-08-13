@@ -2,6 +2,7 @@
 using BussinessLogic.DTO;
 using DataAccess.DAO;
 using DataAccess.Model;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,7 +66,7 @@ namespace BussinessLogic.Service
             {
                 var orderLst = context.Orders.Where(x => x.UserId == usId).ToList();
                 var lstRequest = new List<OrderRequest>();
-                if(orderLst.Count > 0)
+                if (orderLst.Count > 0)
                 {
                     foreach (var lst in orderLst)
                     {
@@ -92,11 +93,50 @@ namespace BussinessLogic.Service
             }
         }
 
-        public List<Order> GetAllOrder()
+        public List<OrderDTO> GetAllOrder()
         {
             using (DataAccessContext context = new DataAccessContext())
             {
-                return context.Orders.ToList();
+                var data = _mapper.Map<List<OrderDTO>>(context.Orders.ToList());
+                foreach (var item in data)
+                {
+                    item.UserName = context.Users.FirstOrDefault(x => x.UserId == item.UserId).UserName;
+                }
+                return data;
+            }
+        }
+
+        public List<OrderRequest> GetOrderbyId(int id)
+        {
+            using (DataAccessContext context = new DataAccessContext())
+            {
+                var orderLst = context.Orders.Where(x => x.OrderId == id).ToList();
+                var lstRequest = new List<OrderRequest>();
+                if (orderLst.Count > 0)
+                {
+                    foreach (var lst in orderLst)
+                    {
+                        OrderRequest or = new OrderRequest();
+                        or.Orders = lst;
+                        or.OrderDetails = context.OrderDetails.Where(x => x.OrderId == lst.OrderId).ToList();
+                        lstRequest.Add(or);
+                    }
+                    return lstRequest;
+                }
+                return null;
+            }
+        }
+
+        public void UpdateStatus(int id, int status)
+        {
+            using (DataAccessContext context = new DataAccessContext())
+            {
+                var data = context.Orders.FirstOrDefault(x => x.OrderId == id);
+                if (data != null)
+                {
+                    data.OrderStatus = status;
+                    context.SaveChanges();
+                }
             }
         }
     }
